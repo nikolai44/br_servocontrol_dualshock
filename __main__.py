@@ -8,6 +8,7 @@ Show everything we can pull off the joystick
 """
 import pygame
 from api import ServocontrolApi
+from time import sleep
 
 # Define some colors
 BLACK = (0, 0, 0)
@@ -73,6 +74,7 @@ api = ServocontrolApi()
 bind_axis_mapping = {
 	# axis: handler
 	3: api.set_speed,
+	1: api.set_smooth_speed,
 }
 
 bind_button_mapping = {
@@ -80,6 +82,8 @@ bind_button_mapping = {
 	4: api.set_led('off'),
 	5: api.set_led('on'),
 }
+
+sleep(2.0)
 
 # -------- Main Program Loop -----------
 while not done:
@@ -150,7 +154,7 @@ while not done:
 	pygame.display.flip()
 
 	# Limit to 10 frames per second
-	clock.tick(2)
+	clock.tick(5)
 
 # Close the window and quit.
 # If you forget this line, the program will 'hang'
